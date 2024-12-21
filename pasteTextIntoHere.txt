@@ -39,3 +39,24 @@ A=
 ⎥
 ⎤
 ​
+ .  If possible, find an invertible matrix 
+P
+P and a diagonal matrix 
+D
+D such that 
+A
+=
+P
+D
+P
+−
+1
+A=PDP 
+−1
+ .  You do not have to compute 
+P
+−
+1
+P 
+−1
+ .
