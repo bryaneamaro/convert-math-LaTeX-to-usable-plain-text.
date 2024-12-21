@@ -11,23 +11,11 @@ int main() {
     printf("\n -> %d \n", strcspn(string, "[") );
     printf("\n -> %d \n", strcspn(string, "]") );
 
-    /* There has been a matrix defined using brackets "[]" */
+    /* New approach */
+    /* Ignore every line of text that is just a single char,
+        That is, a single char followed by a '\n' char */
 
-    /* Now, Find the redundant/garbage-text generated from that- */
-    /* This will almost-certainly have these chars {} */
     
-
-    char *subString = &( string[ strcspn(string, "]") + 1] );
-    printf("\nInput_text :%s \n", subString);
-
-    /* This is just a separate char-array! that holds a copy of the substring! */
-    /* char separate_subString[strlen(subString) ]; */
-    /* strcpy(separate_subString, subString); */
-    char* separate_subString = "A=  ⎣ ⎢ ⎡ ​    1 0 0 ​    2 4 0 ​    3 5 6 ​    ⎦ ⎥ ⎤ ​  . ";
-
-    printf("\n Old String -> %s\n", separate_subString );
-    char* new_string = remove_non_ascii( separate_subString );
-    printf("\n New String -> %s\n", new_string);
 
     return 0;
 }

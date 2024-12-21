@@ -18,11 +18,12 @@ int main() {
     while( fgets(text, 200, input_ptr) != NULL  ) {
         /* Reads line of text from input file */
 
-        text[strlen(text)-1] = ' ';
-         /* replaces '\n' with a ' ' */
+        if(strlen(text) > 2 ){
+            text[strlen(text)-1] = ' '; 
+            /* replaces '\n' with a ' ' */
+            fputs(text, output_ptr ); /* WRites the text to output file */
+        }
         
-
-        fputs(text, output_ptr ); /* WRites the text to output file */
 
     }
     fclose(input_ptr);
