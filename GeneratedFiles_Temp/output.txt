@@ -1,1 +1,1 @@
-Consider the following two bases for the vector space  × M  2×2 ​   of all  × 2×2 matrices: B={[  ​    ​  ],[  ​    ​  ],[  ​    ​  ],[  ​    ​  ]} − − C={[  ​    ​  ],[  ​    −1 ​  ],[  ​    ​  ],[  −1 ​    ​  ]} Let  A=[  ​    ​  ].  Find the coordinate vector of  A with respect to each of these bases.  That is, find  [A]  ​   and  [A]  ​ 
+Row  

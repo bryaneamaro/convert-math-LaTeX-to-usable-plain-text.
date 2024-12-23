@@ -4,18 +4,53 @@
 
 char* remove_non_ascii(char *);
 char* truncate_spaces(char *);
+void* reveal_decimal_values(char *);
+void print_matrix_section(char *text_line, FILE *in, int *line_count);
+int index_of(char *string, char target);
 
 int main() {
 
-    char string[] = "Example:  Let  A = [ 1 2 3 0 4 5 0 0 6 ] A=  ⎣ ⎢ ⎡ ​    1 0 0 ​    2 4 0 ​    3 5 6 ​    ⎦ ⎥ ⎤ ​  .  If possible, find an invertible matrix  P P and a diagonal matrix  D D such that  A = P D P − 1 A=PDP  −1  .  You do not have to compute  P − 1 P  −1   ";
-    printf("\n -> %d \n", strcspn(string, "[") );
-    printf("\n -> %d \n", strcspn(string, "]") );
-
-    /* New approach */
-    /* Ignore every line of text that is just a single char,
-        That is, a single char followed by a '\n' char */
-
+    char *text;
+    FILE *file_ptr;
+    FILE *out_ptr;
+    int line_num = 1;
+    int *count_ptr = &line_num;
+    file_ptr = fopen("experimental_input.txt", "r");
+    out_ptr = fopen("GeneratedFiles_Temp/output.txt", "w");
     
+    text = malloc(200 + 1);
+
+    if( file_ptr == NULL || out_ptr == NULL ) {
+        printf("\nBOO! FileIO failed!\n");
+    }
+    printf("HEEWO\n");
+    while( fgets(text, 200, file_ptr) != NULL ) { /* Reads line of text from input file */
+        
+        /* If we don't have a line like "A= " */
+        if(strlen(text) > 2 ) { /* Filters "useless" single-char text lines */
+
+            
+            if (index_of(text, '=') > 0) {
+                printf("Line %d :%s\n", line_num, text);
+                print_matrix_section(text, file_ptr, count_ptr);
+
+                text[strlen(text)-1] = ' '; 
+                /* at the end, replaces '\n' with a ' ' char */
+            
+                fputs(text, out_ptr ); 
+                /* WRites the text to output file */
+            }
+            
+            
+        }
+        
+        line_num++;
+    }
+
+    printf("\n\nMatrices in LaTeX end with: \n\n ⎣ ⎢ ⎢ ⎢⎡ ​ \n");
+    char test_string[] = "⎣⎢⎢⎢⎡ ​ \n";
+    reveal_decimal_values(test_string);
+
 
     return 0;
 }
@@ -61,4 +96,31 @@ char* remove_non_ascii(char *string) {
 
 char* truncate_spaces(char *string) {
 
+}
+
+void* reveal_decimal_values(char *string) {
+    while(*string != '\0') {
+        printf("={%d}=\n", *string);
+        string++;
+    }
+}
+
+
+void print_matrix_section(char *text_line, FILE *in, int *line_count) {
+    int matrix_end_found = 0;
+
+    while (fgets(text_line, 100, in) != NULL && matrix_end_found == 0)
+    {
+        printf("Line %d |%s", *line_count, text_line);
+        if (index_of(text_line, '}') >= 0)
+        {
+            matrix_end_found = 1;
+        }
+        (*line_count)++;
+    }
+}
+
+int index_of(char *string, char target) /* Return index where char (target) appears */
+{
+    return (strchr(string, target) - string);
 }
