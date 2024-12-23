@@ -21,7 +21,7 @@ int main() {
         /* reveal_decimal_values(text); */
         if(strlen(text) > 2 ){ /* Filters single-char text lines */
 
-            if( strcspn(text, "=") > 0  ) { /* If the '=' char is present, but not at the start */
+            if(index_of(text, '=') > 0)  { /* If the '=' char is present, but not at the start */
 
                 /* Parse broken matrix text */
                 

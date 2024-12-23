@@ -1,116 +1,61 @@
-A matrix 
-A
-A and its reduced row echelon form are given below. 
+
+Let 
 A
 =
 [
 1
 2
-2
-2
-4
-4
 3
-1
-5
+0
 4
-3
-7
-]
-∼
-[
-1
-0
-8
-/
-5
-0
-1
-1
-/
 5
 0
 0
-0
-0
-0
-0
+6
 ]
 A= 
 ⎣
 ⎢
-⎢
-⎢
 ⎡
 ​
   
 1
-2
-3
-4
+0
+0
 ​
   
 2
 4
-1
-3
+0
 ​
   
-2
-4
+3
 5
-7
+6
 ​
   
 ⎦
 ⎥
-⎥
-⎥
 ⎤
 ​
- ∼ 
-⎣
-⎢
-⎢
-⎢
-⎡
-​
-  
+ .  If possible, find an invertible matrix 
+P
+P and a diagonal matrix 
+D
+D such that 
+A
+=
+P
+D
+P
+−
 1
-0
-0
-0
-​
-  
-0
+A=PDP 
+−1
+ .  You do not have to compute 
+P
+−
 1
-0
-0
-​
-  
-8/5
-1/5
-0
-0
-​
-  
-⎦
-⎥
-⎥
-⎥
-⎤
-​
- 
-Give a basis for each of the following subspaces:
-(a) 
-Nul 
-A
-Nul A
-(b) 
-Col 
-A
-Col A
-(c) 
-Row 
-A
-Row A
+P 
+−1
+ .
