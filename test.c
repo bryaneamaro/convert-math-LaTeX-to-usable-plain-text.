@@ -26,21 +26,32 @@ int main() {
     printf("HEEWO\n");
     while( fgets(text, 200, file_ptr) != NULL ) { /* Reads line of text from input file */
         /* If we don't have a line like "A= " */
-
+        
+        
         if(strlen(text) > 2 ) { /* Filters "useless" single-char text lines */
+            /* fputs("!", out_ptr); */
             
-            if (index_of(text, '=') > 0) {
+            if (index_of(text, '=') > 0) {  /* !Formatted Matrix Processing! */
                 /* printf("Line %d :%s\n", line_num, text); */
                 
                 print_matrix_section(text, file_ptr, out_ptr, count_ptr);
                 
                 /* at the end, replaces '\n' with a ' ' char */
-                
-                /* WRites the text to output file */
             }
-            else {
-                text[strlen(text)-1] = ' ';
-                fputs(text, out_ptr );
+            else {  /* Line does not have equals sign */
+
+                if(text[0] >= 0) {
+                    /* text[0] is An ASCII char */
+                    
+                    text[strlen(text)-1] = ' ';
+                    fputs(text, out_ptr );
+                    /* fputs("\n", out_ptr ); */
+                } else {
+                    /* Annoying Non-Ascii char */
+                }
+                
+                
+
             }
             
             
@@ -53,6 +64,18 @@ int main() {
     printf("\n\nMatrices in LaTeX end with: \n\n ⎣ ⎢ ⎢ ⎢⎡ ​ \n");
     char test_string[] = "⎣⎢⎢⎢⎡ ​ \n";
     reveal_decimal_values(test_string);
+
+    char* test1 = ("A= ");
+    char* test2 = ("âŽ£");
+    /* 
+     == strlen(test1)-1
+     
+     == strlen(test2)-1
+     */
+
+    printf("{%d}\n", test1[1] );
+    printf("{%d}\n", test2[1] );
+
 
     return 0;
 }
@@ -114,13 +137,14 @@ void print_matrix_section(char *text_line, FILE *in, FILE *out, int *line_count)
     /* fputs("{!}{!}{!}", out); */
     text_line[strlen(text_line)-1] = ' ';
     fputs(text_line, out );
+    /* fputs("\n", out ); */
     while (fgets(text_line, 100, in) != NULL && matrix_end_found == 0) {
         text_line[strlen(text_line)-1] = ' ';
         fputs(text_line, out );
-        printf("Line %d |%s", *line_count, text_line);
+        /* fputs("\n", out ); */
+        /* printf("Line %d |%s", *line_count, text_line); */
         
-        if (index_of(text_line, '}') >= 0)
-        {
+        if (index_of(text_line, '.') >= 0) {
             matrix_end_found = 1;
         }
         (*line_count)++;
